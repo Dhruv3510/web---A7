@@ -4,40 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Registration Form</title>
-    <style>
-        *,html{
-            margin: 0;
-            padding: 0;
-        }
-        #box{
-            width: 600px;
-            height: 900px;
-            background-color: rgb(29, 90, 6);
-            margin: 0px auto;
-            padding: 10px 20px;
-            box-sizing: border-box;
-        }
-    </style>
+
 </head>
 <body>
+    <h2>Registration Form</h2>
     <div id="box">
-        <form>
+        <form action="login.html" method="get">
             <div>
                 <lable>Your Name : </lable>
                 <input type="text" placeholder="Enter your name"/>
             </div>
+            <br>
             <div>
                 <label>Your Email : </label>
                 <input type="email" placeholder="Enter your email"/>
             </div>
+            <br>
             <div>
                 <label>Your Phone no. : </label>
                 <input type="tel" placeholder="Enter your phone number"/>
             </div>
+            <br>
             <div>
                 <label>Your DOB : </label>
                 <input type="date"/>
             </div>
+            <br>
             <div>
                 <label>Your Gender : </label>
                 <input type="radio" name="gender" value="male"/>
@@ -47,6 +39,7 @@
                 <input type="radio" name="gender" value="other"/>
                 <label>Others</label>
             </div>
+            <br>
             <div>
                 <label>Your Course:</label>
                 <input type="checkbox" name="course" value="html"/>
@@ -56,7 +49,7 @@
                 <input type="checkbox" name="course" value="javascript"/>
                 <label>JavaScript</label>
             </div>
-
+            <br>
             <div>
                 <label>Your Country:</label>
                 <select>
@@ -66,19 +59,18 @@
                     <option value="australia">Australia</option>
                 </select>
             </div>
-
+            <br>
             <div>
                 <label>Your Address:</label>
                 <textarea placeholder="
                 Enter your address" cols="20" rows="5"></textarea>
             </div>
-
+            <br>
             <div>
-                <input type="submit" value="Submit"/>
+                <input type="submit" value="Submit" />
+
                 <input type="reset" value="Reset"/>
             </div>
         </form>
-        
-    </div>
 </body>
 </html>
