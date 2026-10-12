@@ -1,0 +1,358 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vuitton | Restaurant</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f5ef;
+      color: #263b2e;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 6%;
+      background: rgba(25, 48, 35, 0.96);
+      z-index: 1000;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 1.8rem;
+      color: #d8b778;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #f8f5ef;
+      text-decoration: none;
+      margin-left: 25px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover { color: #d8b778; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 6% 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(17, 35, 25, 0.88),
+          rgba(17, 35, 25, 0.40)
+        ),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=85")
+        center / cover;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.2;
+      max-width: 650px;
+      margin-bottom: 20px;
+      color: #fffaf0;
+    }
+
+    .hero p {
+      margin-bottom: 30px;
+      max-width: 550px;
+      color: #eee7d9;
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #c49a54;
+      color: #193023;
+      padding: 13px 30px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #e0c58d;
+      transform: translateY(-3px);
+    }
+
+    /* Sections */
+    section { padding: 90px 6%; }
+
+    h2 {
+      font-family: Georgia, serif;
+      color: #244b35;
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+    }
+
+    .sub {
+      color: #777c70;
+      margin-bottom: 40px;
+    }
+
+    /* Menu cards */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      align-items: start;
+    }
+
+    details {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e9e3d7;
+      box-shadow: 0 5px 18px rgba(37, 59, 43, 0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    details:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(37, 59, 43, 0.14);
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    details img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    details[open] img {
+      object-position: center;
+    }
+
+    .info { padding: 22px; }
+
+    .info h3 {
+      font-family: Georgia, serif;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #244b35;
+    }
+
+    .price {
+      color: #ad8039;
+      font-weight: bold;
+      white-space: nowrap;
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+    }
+
+    .info p { color: #73776f; }
+
+    .hint {
+      color: #ad8039;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .ingredients {
+      padding: 0 22px 22px;
+      color: #626b60;
+      border-top: 1px solid #eee8dc;
+      margin: 0 22px;
+      padding-top: 16px;
+    }
+
+    /* Contact */
+    #contact {
+      background: #eae9dc;
+    }
+
+    #contact h4 {
+      color: #244b35;
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #e7e5d9;
+      background: #193023;
+    }
+
+    /* Mobile-friendly navigation */
+    @media (max-width: 600px) {
+      header {
+        padding: 15px 5%;
+      }
+
+      .logo { font-size: 1.5rem; }
+
+      nav a {
+        margin-left: 12px;
+        font-size: 0.9rem;
+      }
+
+      section { padding: 65px 5%; }
+
+      .hero { padding-left: 5%; }
+
+      h2 { font-size: 2rem; }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <a href="#home" class="logo">Vuitton</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero" id="home">
+    <div>
+      <h1>Delicious Food, Made With Love</h1>
+      <p>Experience fresh ingredients, amazing flavours, and unforgettable meals.</p>
+      <a href="#menu" class="btn">Explore Our Menu</a>
+    </div>
+  </div>
+
+  <!-- Menu -->
+  <section id="menu">
+    <h2>Our Menu</h2>
+    <p class="sub">Click any dish to see what goes into it.</p>
+
+    <div class="menu-grid">
+
+      <details>
+        <summary>
+          <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=85" alt="Freshly baked Margherita pizza">
+          <div class="info">
+            <h3>Margherita Pizza <span class="price">₹349</span></h3>
+            <p>A thin, wood-fired crust topped with tangy tomato sauce and melting mozzarella.</p>
+            <p class="hint">Click to see ingredients</p>
+          </div>
+        </summary>
+        <p class="ingredients"><b>Ingredients:</b> Pizza dough, tomato sauce, mozzarella, fresh basil, olive oil, salt.</p>
+      </details>
+
+      <details>
+        <summary>
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=85" alt="Gourmet cheeseburger">
+          <div class="info">
+            <h3>Golden Burger <span class="price">₹299</span></h3>
+            <p>A juicy grilled patty in a toasted bun, served with crispy fries.</p>
+            <p class="hint">Click to see ingredients</p>
+          </div>
+        </summary>
+        <p class="ingredients"><b>Ingredients:</b> Brioche bun, grilled patty, cheddar, lettuce, tomato, onion, house sauce, potatoes.</p>
+      </details>
+
+      <details>
+        <summary>
+          <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=85" alt="Grilled steak served with vegetables">
+          <div class="info">
+            <h3>Herb Grilled Steak <span class="price">₹649</span></h3>
+            <p>Tender steak grilled over high heat and finished with garlic butter.</p>
+            <p class="hint">Click to see ingredients</p>
+          </div>
+        </summary>
+        <p class="ingredients"><b>Ingredients:</b> Steak, garlic, butter, rosemary, black pepper, sea salt, seasonal vegetables.</p>
+      </details>
+
+      <details>
+        <summary>
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=85" alt="Fresh garden salad in a bowl">
+          <div class="info">
+            <h3>Garden Fresh Salad <span class="price">₹229</span></h3>
+            <p>A light, crunchy bowl of greens with a lemon and herb dressing.</p>
+            <p class="hint">Click to see ingredients</p>
+          </div>
+        </summary>
+        <p class="ingredients"><b>Ingredients:</b> Lettuce, cherry tomatoes, cucumber, avocado, olives, lemon juice, olive oil, herbs.</p>
+      </details>
+
+      <details>
+        <summary>
+          <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=800&q=85" alt="Fluffy pancakes with fresh berries">
+          <div class="info">
+            <h3>Berry Pancakes <span class="price">₹249</span></h3>
+            <p>Fluffy pancakes stacked high with fresh berries and warm maple syrup.</p>
+            <p class="hint">Click to see ingredients</p>
+          </div>
+        </summary>
+        <p class="ingredients"><b>Ingredients:</b> Flour, eggs, milk, butter, sugar, strawberries, blueberries, maple syrup.</p>
+      </details>
+
+      <details>
+        <summary>
+          <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=85" alt="Fresh glazed donuts">
+          <div class="info">
+            <h3>Glazed Donuts <span class="price">₹179</span></h3>
+            <p>Soft, freshly fried donuts with a sweet vanilla glaze.</p>
+            <p class="hint">Click to see ingredients</p>
+          </div>
+        </summary>
+        <p class="ingredients"><b>Ingredients:</b> Flour, yeast, milk, eggs, sugar, butter, vanilla, powdered sugar glaze.</p>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p class="sub">Book a table or ask us anything. We reply within a day.</p>
+
+    <h4>Address</h4>
+    <p>12 Market Road, Ghaziabad, Uttar Pradesh</p>
+
+    <h4>Phone</h4>
+    <p>+91 98547 85123</p>
+
+    <h4>Email</h4>
+    <p>hello@vuitton.com</p>
+
+    <h4>Opening hours</h4>
+    <p>Every day, 11:00 AM to 11:00 PM</p>
+  </section>
+
+  <footer>&copy; 2026 Vuitton. All rights reserved.</footer>
+
+</body>
+</html>
+```
